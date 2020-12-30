@@ -1,3 +1,3 @@
 $(function(){
-    $("#resume-navbar-container").load("/navbar.html")
+    $(".navbar-container").load("/navbar.html")
 });
