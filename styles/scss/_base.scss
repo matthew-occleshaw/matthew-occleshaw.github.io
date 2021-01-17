@@ -1,1 +1,10 @@
 // Contained within this file are all your resets, variables, mixins, and any utility classes
+.header-banner {
+    height:400px;
+    background-image:url(/images/header-background.jpg);
+    background-size:cover;
+    h1 {
+        color:white;
+        font-size:800%;
+    }
+}

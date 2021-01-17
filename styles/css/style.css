@@ -1,1 +1,15 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.header-banner {
+  height: 400px;
+  background-image: url(/images/header-background.jpg);
+  background-size: cover;
+}
+
+.header-banner h1 {
+  color: white;
+  font-size: 800%;
+}
+
+.content-container {
+  padding: 15px;
+}
+/*# sourceMappingURL=style.css.map */
