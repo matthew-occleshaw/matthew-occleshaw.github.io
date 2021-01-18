@@ -1,5 +1,5 @@
 $(function() {
-    $("#navbar-container").load("/html/navbar.html", setActivePage());
+    $("#navbar-container").load("/html/navbar.html");
 });
 
 function setActivePage() {
@@ -7,11 +7,11 @@ function setActivePage() {
     page_title_id = $(document).find("title").text()
     if (page_title_id == "Home") {
         $("#home-button").addClass("active");
-        $("p").css("color", "red")
+        //$("p").css("color", "red")
         console.log("Home test");
     } else if (page_title_id == "Resume") {
         $("#resume-button").addClass("active");
-        $("p").css("color", "yellow")
+        //$("p").css("color", "yellow")
         console.log("Resume test");
     }
 }
