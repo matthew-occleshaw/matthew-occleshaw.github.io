@@ -1,5 +1,5 @@
 $(function() {
-    $("#navbar-container").load("/html/navbar.html", setActivePage());
+    setActivePage();
 });
 
 function setActivePage() {
