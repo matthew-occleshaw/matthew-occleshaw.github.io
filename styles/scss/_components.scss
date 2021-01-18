@@ -1,1 +1,28 @@
 // Anything reusable such as buttons, navbars, cards etc.
+.header-banner {
+    height:400px;
+    background-image:url(/images/header-background.jpg);
+    background-size:cover;
+    @media only screen and (max-width: 500px) {
+        height:300px;
+    }
+
+    h1 {
+        color:white;
+        font-size:125px;
+        font-family: 'Montserrat', sans-serif;
+        @media only screen and (max-width: 500px) {
+            font-size:100px;
+        }
+        @media only screen and (max-width: 400px) {
+            font-size:75px;
+        }
+    }
+}
+
+.content-container {
+    p {
+        font-family: 'Open Sans', sans-serif;
+        font-size:18px;
+    }
+}
