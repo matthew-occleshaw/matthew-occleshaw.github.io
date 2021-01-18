@@ -1,2 +1,16 @@
 // Contained within this file are all your resets, variables, mixins, and any utility classes
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
+
+@mixin main-font {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color:white;
+}
+
+@mixin header-font {
+    color: white;
+    font-size: 125px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+$mainColor: #1c1c1c;
