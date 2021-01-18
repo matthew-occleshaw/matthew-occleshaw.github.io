@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap");
 .content-container {
-  margin: 25px 15%;
+  margin: 25px 10%;
 }
 
 body {
@@ -61,9 +61,14 @@ body {
 }
 
 .navbar-button {
-  padding: 25px;
+  padding: 10px 25px;
   background-color: #1c1c1c;
   text-decoration: none;
+}
+
+.active {
+  background-color: white;
+  color: black;
 }
 
 .navbar-button:hover {

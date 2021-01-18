@@ -1,4 +1,6 @@
 // Anything reusable such as buttons, navbars, cards etc.
+
+// Header banner
 .header-banner {
     height: 400px;
     background-image: url(/images/header-background.jpg);
@@ -18,10 +20,12 @@
     }
 }
 
+// Main page content container
 .content-container {
     line-height: 200%;
 }
 
+// Navbar
 .navbar {
     display:flex;
     flex-flow: row nowrap;
@@ -32,9 +36,14 @@
 }
 
 .navbar-button {
-    padding: 25px;
+    padding: 10px 25px;
     background-color: $mainColor;
     text-decoration: none;
+}
+
+.active {
+    background-color: white;
+    color: black;
 }
 
 .navbar-button:hover {
