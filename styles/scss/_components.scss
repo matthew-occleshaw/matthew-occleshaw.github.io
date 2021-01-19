@@ -11,10 +11,10 @@
 
     h1 {
         @include header-font;
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 550px) {
             font-size: 100px;
         }
-        @media only screen and (max-width: 400px) {
+        @media only screen and (max-width: 450px) {
             font-size: 75px;
         }
     }
@@ -31,7 +31,7 @@
 }
 
 .navbar-button {
-    padding: 10px 25px;
+    padding: 11.5px 25px;
     background-color: $mainColor;
     text-decoration: none;
 }
@@ -44,7 +44,7 @@
     margin-left: auto;
 }
 
-#navbar-button {
+#navbar-menu-button-container {
     display:none
 }
 
@@ -57,7 +57,7 @@
     }
     
     .navbar-button {
-        padding: 10px 30%;
+        padding: 10px 30px;
         text-decoration: none;
     }
     
@@ -65,10 +65,17 @@
         margin: auto;
     }
 
-    #navbar-button {
+    #navbar-menu-button-container {
         display: block;
         height: 50px;
         background-color: $mainColor;
+    }
+
+    #navbar-menu-button {
+        float: right;
+        height: 30px;
+        width: 35px;
+        margin: 10px;
     }
 
     #navbar-container {

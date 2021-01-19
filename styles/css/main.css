@@ -36,13 +36,13 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   .header-banner h1 {
     font-size: 100px;
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
   .header-banner h1 {
     font-size: 75px;
   }
@@ -65,7 +65,7 @@ body {
 }
 
 .navbar-button {
-  padding: 10px 25px;
+  padding: 11.5px 25px;
   background-color: #1c1c1c;
   text-decoration: none;
 }
@@ -78,7 +78,7 @@ body {
   margin-left: auto;
 }
 
-#navbar-button {
+#navbar-menu-button-container {
   display: none;
 }
 
@@ -95,16 +95,22 @@ body {
     height: 150px;
   }
   .navbar-button {
-    padding: 10px 30%;
+    padding: 10px 30px;
     text-decoration: none;
   }
   .float-right {
     margin: auto;
   }
-  #navbar-button {
+  #navbar-menu-button-container {
     display: block;
     height: 50px;
     background-color: #1c1c1c;
+  }
+  #navbar-menu-button {
+    float: right;
+    height: 30px;
+    width: 35px;
+    margin: 10px;
   }
   #navbar-container {
     display: none;
