@@ -11,10 +11,10 @@
 
     h1 {
         @include header-font;
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 550px) {
             font-size: 100px;
         }
-        @media only screen and (max-width: 400px) {
+        @media only screen and (max-width: 450px) {
             font-size: 75px;
         }
     }
@@ -44,7 +44,7 @@
     margin-left: auto;
 }
 
-#navbar-button {
+#navbar-button-container {
     display:none
 }
 
@@ -65,10 +65,17 @@
         margin: auto;
     }
 
-    #navbar-button {
+    #navbar-button-container {
         display: block;
         height: 50px;
         background-color: $mainColor;
+    }
+
+    #navbar-button {
+        float: right;
+        height: 30px;
+        width: 30px;
+        margin: 10px;
     }
 
     #navbar-container {
