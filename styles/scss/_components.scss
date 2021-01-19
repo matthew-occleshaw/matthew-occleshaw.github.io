@@ -36,17 +36,16 @@
     text-decoration: none;
 }
 
-.active {
-    background-color: white;
-    color: black;
-}
-
 .navbar-button:hover {
     background-color: lighten($mainColor, 50%);
 }
 
 .float-right {
     margin-left: auto;
+}
+
+#navbar-button {
+    display:none
 }
 
 @media only screen and (max-width: 450px) {
@@ -64,5 +63,15 @@
     
     .float-right {
         margin: auto;
+    }
+
+    #navbar-button {
+        display: block;
+        height: 50px;
+        background-color: $mainColor;
+    }
+
+    #navbar-container {
+        display: none;
     }
 }

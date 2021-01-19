@@ -63,17 +63,16 @@ body {
   text-decoration: none;
 }
 
-.active {
-  background-color: white;
-  color: black;
-}
-
 .navbar-button:hover {
   background-color: #9c9c9c;
 }
 
 .float-right {
   margin-left: auto;
+}
+
+#navbar-button {
+  display: none;
 }
 
 @media only screen and (max-width: 450px) {
@@ -94,6 +93,14 @@ body {
   }
   .float-right {
     margin: auto;
+  }
+  #navbar-button {
+    display: block;
+    height: 50px;
+    background-color: #1c1c1c;
+  }
+  #navbar-container {
+    display: none;
   }
 }
 /*# sourceMappingURL=main.css.map */
