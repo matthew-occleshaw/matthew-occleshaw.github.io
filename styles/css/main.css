@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap");
-.content-container {
+main {
   margin: 25px 10%;
+  line-height: 200%;
 }
 
 body {
@@ -38,10 +39,6 @@ body {
   .header-banner h1 {
     font-size: 75px;
   }
-}
-
-.content-container {
-  line-height: 200%;
 }
 
 .navbar {
