@@ -2,12 +2,19 @@
 main {
   margin: 25px 10%;
   line-height: 200%;
+  text-align: justify;
 }
 
 @media only screen and (max-width: 450px) {
   main {
-    margin: 25px 10px;
+    margin: 25px 20px;
     font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  main {
+    margin: 25px 30px;
   }
 }
 
@@ -16,6 +23,7 @@ body {
   font-size: 18px;
   color: white;
   background-color: #1c1c1c;
+  margin: 0px;
 }
 
 .header-banner {
@@ -24,27 +32,32 @@ body {
   background-size: cover;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   .header-banner {
     height: 300px;
   }
 }
 
-.header-banner h1 {
+.header-text {
   color: white;
   font-size: 125px;
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin: 0px;
+  padding: 124px 0px;
 }
 
 @media only screen and (max-width: 550px) {
-  .header-banner h1 {
+  .header-text {
     font-size: 100px;
+    padding: 89px 0px;
   }
 }
 
 @media only screen and (max-width: 450px) {
-  .header-banner h1 {
+  .header-text {
     font-size: 75px;
+    padding: 104px 0px;
   }
 }
 
@@ -65,13 +78,17 @@ body {
 }
 
 .navbar-button {
-  padding: 11.5px 25px;
+  padding: 13px 25px;
   background-color: #1c1c1c;
-  text-decoration: none;
 }
 
 .navbar-button:hover {
   background-color: #9c9c9c;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }
 
 .float-right {

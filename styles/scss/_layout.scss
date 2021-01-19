@@ -2,13 +2,18 @@
 main {
     margin: 25px 10%;
     line-height: 200%;
+    text-align: justify;
     @media only screen and (max-width: 450px) {
-        margin: 25px 10px;
+        margin: 25px 20px;
         font-size: 16px;
     }
+    @media only screen and (max-width: 550px) {
+        margin: 25px 30px;
+    }        
 }
 
 body {
     @include main-font;
     background-color: $mainColor;
+    margin:0px;
 }

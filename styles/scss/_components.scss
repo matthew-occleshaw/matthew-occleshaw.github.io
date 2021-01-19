@@ -5,18 +5,23 @@
     height: 400px;
     background-image: url(/images/header-background.jpg);
     background-size: cover;
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 550px) {
         height: 300px;
     }
+}
 
-    h1 {
-        @include header-font;
-        @media only screen and (max-width: 550px) {
-            font-size: 100px;
-        }
-        @media only screen and (max-width: 450px) {
-            font-size: 75px;
-        }
+.header-text{
+    @include header-font;
+    text-align: center;
+    margin: 0px;
+    padding: 124px 0px;
+    @media only screen and (max-width: 550px) {
+        font-size: 100px;
+        padding: 89px 0px;
+    }
+    @media only screen and (max-width: 450px) {
+        font-size: 75px;
+        padding: 104px 0px;
     }
 }
 
@@ -31,13 +36,17 @@
 }
 
 .navbar-button {
-    padding: 11.5px 25px;
+    padding: 13px 25px;
     background-color: $mainColor;
-    text-decoration: none;
 }
 
 .navbar-button:hover {
     background-color: lighten($mainColor, 50%);
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 .float-right {
@@ -45,7 +54,7 @@
 }
 
 #navbar-menu-button-container {
-    display:none
+    display:none;
 }
 
 @media only screen and (max-width: 450px) {
