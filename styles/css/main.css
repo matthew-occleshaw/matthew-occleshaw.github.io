@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap");
-.content-container {
-  margin: 25px 15%;
+main {
+  margin: 25px 10%;
+  line-height: 200%;
 }
 
 body {
@@ -40,10 +41,6 @@ body {
   }
 }
 
-.content-container {
-  line-height: 200%;
-}
-
 .navbar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -61,7 +58,7 @@ body {
 }
 
 .navbar-button {
-  padding: 25px;
+  padding: 10px 25px;
   background-color: #1c1c1c;
   text-decoration: none;
 }
@@ -72,6 +69,10 @@ body {
 
 .float-right {
   margin-left: auto;
+}
+
+#navbar-button {
+  display: none;
 }
 
 @media only screen and (max-width: 450px) {
@@ -92,6 +93,14 @@ body {
   }
   .float-right {
     margin: auto;
+  }
+  #navbar-button {
+    display: block;
+    height: 50px;
+    background-color: #1c1c1c;
+  }
+  #navbar-container {
+    display: none;
   }
 }
 /*# sourceMappingURL=main.css.map */

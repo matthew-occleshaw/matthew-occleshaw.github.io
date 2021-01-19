@@ -1,4 +1,6 @@
 // Anything reusable such as buttons, navbars, cards etc.
+
+// Header banner
 .header-banner {
     height: 400px;
     background-image: url(/images/header-background.jpg);
@@ -18,10 +20,7 @@
     }
 }
 
-.content-container {
-    line-height: 200%;
-}
-
+// Navbar
 .navbar {
     display:flex;
     flex-flow: row nowrap;
@@ -32,7 +31,7 @@
 }
 
 .navbar-button {
-    padding: 25px;
+    padding: 10px 25px;
     background-color: $mainColor;
     text-decoration: none;
 }
@@ -43,6 +42,10 @@
 
 .float-right {
     margin-left: auto;
+}
+
+#navbar-button {
+    display:none
 }
 
 @media only screen and (max-width: 450px) {
@@ -60,5 +63,15 @@
     
     .float-right {
         margin: auto;
+    }
+
+    #navbar-button {
+        display: block;
+        height: 50px;
+        background-color: $mainColor;
+    }
+
+    #navbar-container {
+        display: none;
     }
 }
