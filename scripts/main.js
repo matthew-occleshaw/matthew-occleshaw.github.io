@@ -4,6 +4,4 @@ $(function() {
     $("#navbar-menu-button").click(function(){
         $("#navbar-container").slideToggle("125");
       });
-
-    console.log("test")
 });
