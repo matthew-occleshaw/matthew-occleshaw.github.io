@@ -13,4 +13,21 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+@mixin bp($breakpoint) {
+    $breakpoint-phone: 450px;
+    $breakpoint-tablet: 550px;
+
+    @if $breakpoint == phone {
+      @media only screen and (max-width: $breakpoint-phone) {
+          @content;
+      }
+    }
+    @else if $breakpoint == tablet {
+        @media only screen and (max-width: $breakpoint-tablet) {
+            @content;
+        }
+    }
+}
+
+
 $mainColor: #1c1c1c;
