@@ -38,10 +38,9 @@
 .navbar-button {
     padding: 13px 25px;
     background-color: $mainColor;
-}
-
-.navbar-button:hover {
+    &:hover {
     background-color: lighten($mainColor, 50%);
+}
 }
 
 a, a:hover, a:focus, a:active {
@@ -97,27 +96,27 @@ a, a:hover, a:focus, a:active {
         margin: auto;
         display:block;
         width: 35px;
-    }
-      
-    .navbar-menu-button:after, 
-    .navbar-menu-button:before, 
-    .navbar-menu-button div {
-        background-color: white;
-        border-radius: 3px;
-        content: '';
-        display: block;
-        height: 5px;
-        margin: 7px 0;
-        transition: all .2s ease-in-out;
-    }
 
-    .navbar-menu-button.active:before {
-        transform: translateY(12px) rotate(135deg);
-    }
-    .navbar-menu-button.active:after {
-        transform: translateY(-12px) rotate(-135deg);
-    }
-    .navbar-menu-button.active div {
-        transform: scale(0);
+        &:after, &:before, div {
+            background-color: white;
+            border-radius: 3px;
+            content: '';
+            display: block;
+            height: 5px;
+            margin: 7px 0;
+            transition: all .2s ease-in-out;
+        }
+
+        &.active {
+            &:before {
+                transform: translateY(12px) rotate(135deg);
+            }
+            &:after {
+                transform: translateY(-12px) rotate(-135deg);
+            }
+            div {
+                transform: scale(0);
+            }
+        }
     }
 }

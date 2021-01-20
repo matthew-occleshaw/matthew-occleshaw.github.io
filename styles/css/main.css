@@ -149,9 +149,7 @@ a, a:hover, a:focus, a:active {
     display: block;
     width: 35px;
   }
-  .navbar-menu-button:after,
-  .navbar-menu-button:before,
-  .navbar-menu-button div {
+  .navbar-menu-button:after, .navbar-menu-button:before, .navbar-menu-button div {
     background-color: white;
     border-radius: 3px;
     content: '';
