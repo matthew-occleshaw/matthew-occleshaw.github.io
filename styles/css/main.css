@@ -44,20 +44,19 @@ body {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
   margin: 0px;
-  padding: 124px 0px;
+  line-height: 400px;
 }
 
 @media only screen and (max-width: 550px) {
   .header-text {
     font-size: 100px;
-    padding: 89px 0px;
+    line-height: 300px;
   }
 }
 
 @media only screen and (max-width: 450px) {
   .header-text {
     font-size: 75px;
-    padding: 104px 0px;
   }
 }
 
