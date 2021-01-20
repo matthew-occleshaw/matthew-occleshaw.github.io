@@ -2,6 +2,9 @@
 
 // Header banner
 .header-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 400px;
     background-image: url(/images/header-background.jpg);
     background-size: cover;
@@ -14,14 +17,11 @@
     @include header-font;
     text-align: center;
     margin: 0px;
-    padding: 124px 0px;
     @include bp(tablet) {
         font-size: 100px;
-        padding: 89px 0px;
     }
     @include bp(phone) {
         font-size: 75px;
-        padding: 104px 0px;
     }
 }
 

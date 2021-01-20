@@ -27,6 +27,15 @@ body {
 }
 
 .header-banner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 400px;
   background-image: url(/images/header-background.jpg);
   background-size: cover;
@@ -44,20 +53,17 @@ body {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
   margin: 0px;
-  padding: 124px 0px;
 }
 
 @media only screen and (max-width: 550px) {
   .header-text {
     font-size: 100px;
-    padding: 89px 0px;
   }
 }
 
 @media only screen and (max-width: 450px) {
   .header-text {
     font-size: 75px;
-    padding: 104px 0px;
   }
 }
 
