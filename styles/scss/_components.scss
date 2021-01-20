@@ -53,7 +53,7 @@ a, a:hover, a:focus, a:active {
     margin-left: auto;
 }
 
-#navbar-menu-button-container {
+.navbar-menu-button-container {
     display:none;
 }
 
@@ -78,13 +78,13 @@ a, a:hover, a:focus, a:active {
         display: none;
     }
 
-    #navbar-menu-button-bar {
+    .navbar-menu-button-bar {
         display: block;
         height: 50px;
         background-color: $mainColor;
     }
 
-    #navbar-menu-button-container {
+    .navbar-menu-button-container {
         display:flex;
         float: right;
         height: 50px;
@@ -92,16 +92,16 @@ a, a:hover, a:focus, a:active {
         margin-right: 10px;
     }
 
-    #navbar-menu-button {
+    .navbar-menu-button {
         align-self: center;
         margin: auto;
         display:block;
         width: 35px;
     }
       
-    #navbar-menu-button:after, 
-    #navbar-menu-button:before, 
-    #navbar-menu-button div {
+    .navbar-menu-button:after, 
+    .navbar-menu-button:before, 
+    .navbar-menu-button div {
         background-color: white;
         border-radius: 3px;
         content: '';
@@ -109,5 +109,15 @@ a, a:hover, a:focus, a:active {
         height: 5px;
         margin: 7px 0;
         transition: all .2s ease-in-out;
+    }
+
+    .navbar-menu-button.active:before {
+        transform: translateY(12px) rotate(135deg);
+    }
+    .navbar-menu-button.active:after {
+        transform: translateY(-12px) rotate(-135deg);
+    }
+    .navbar-menu-button.active div {
+        transform: scale(0);
     }
 }

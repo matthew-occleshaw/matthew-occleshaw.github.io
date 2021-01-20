@@ -101,7 +101,7 @@ a, a:hover, a:focus, a:active {
   margin-left: auto;
 }
 
-#navbar-menu-button-container {
+.navbar-menu-button-container {
   display: none;
 }
 
@@ -127,12 +127,12 @@ a, a:hover, a:focus, a:active {
   #navbar-container {
     display: none;
   }
-  #navbar-menu-button-bar {
+  .navbar-menu-button-bar {
     display: block;
     height: 50px;
     background-color: #1c1c1c;
   }
-  #navbar-menu-button-container {
+  .navbar-menu-button-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -141,7 +141,7 @@ a, a:hover, a:focus, a:active {
     width: 50px;
     margin-right: 10px;
   }
-  #navbar-menu-button {
+  .navbar-menu-button {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
@@ -149,9 +149,9 @@ a, a:hover, a:focus, a:active {
     display: block;
     width: 35px;
   }
-  #navbar-menu-button:after,
-  #navbar-menu-button:before,
-  #navbar-menu-button div {
+  .navbar-menu-button:after,
+  .navbar-menu-button:before,
+  .navbar-menu-button div {
     background-color: white;
     border-radius: 3px;
     content: '';
@@ -160,6 +160,18 @@ a, a:hover, a:focus, a:active {
     margin: 7px 0;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+  }
+  .navbar-menu-button.active:before {
+    -webkit-transform: translateY(12px) rotate(135deg);
+            transform: translateY(12px) rotate(135deg);
+  }
+  .navbar-menu-button.active:after {
+    -webkit-transform: translateY(-12px) rotate(-135deg);
+            transform: translateY(-12px) rotate(-135deg);
+  }
+  .navbar-menu-button.active div {
+    -webkit-transform: scale(0);
+            transform: scale(0);
   }
 }
 /*# sourceMappingURL=main.css.map */
