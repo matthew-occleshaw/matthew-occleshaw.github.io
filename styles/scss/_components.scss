@@ -121,3 +121,11 @@ a, a:hover, a:focus, a:active {
         }
     }
 }
+
+// Contrasting section
+.contrasting-section {
+    background-color: $contrastingColour;
+    color: $mainColor;
+    padding: 25px 10%;
+    margin: auto 0px;
+}
