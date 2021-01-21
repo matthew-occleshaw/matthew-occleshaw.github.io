@@ -129,3 +129,23 @@ a, a:hover, a:focus, a:active {
     padding: 25px 10%;
     margin: auto 0px;
 }
+
+// Footer
+footer {
+    background-color: lighten($mainColor, 10%);
+    margin: 0px;
+    padding: 50px 100px;
+
+    p {
+        margin: 0px;
+    }
+
+    .footer-icons-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            margin: 0 10vw;
+        }
+    }
+}
