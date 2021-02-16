@@ -53,7 +53,7 @@ a, a:hover, a:focus, a:active {
 }
 
 .navbar-menu-button-container {
-    display:none;
+    display: none;
 }
 
 // Mobile navbar menu and hamburger icon
@@ -95,7 +95,7 @@ a, a:hover, a:focus, a:active {
     .navbar-menu-button {
         align-self: center;
         margin: auto;
-        display:block;
+        display: block;
         width: 35px;
 
         &:after, &:before, div {
