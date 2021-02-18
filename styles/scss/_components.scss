@@ -40,7 +40,7 @@
     background-color: $mainColor;
     &:hover {
     background-color: lighten($mainColor, 50%);
-}
+    }
 }
 
 a, a:hover, a:focus, a:active {
