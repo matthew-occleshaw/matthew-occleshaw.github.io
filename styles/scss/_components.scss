@@ -13,7 +13,7 @@
     }
 }
 
-.header-text{
+.header-text {
     @include header-font;
     text-align: center;
     margin: 0px;
@@ -27,7 +27,7 @@
 
 // Navbar
 .navbar {
-    display:flex;
+    display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-items: flex-start;
