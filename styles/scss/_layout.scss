@@ -1,33 +1,24 @@
 // Contains all the CSS that handles the layout, such as the container and any grid systems
-html {
-    font-size: 100%;
-    box-sizing: border-box;
-}
-
 body {
-    margin: 0px;
-    padding: 0px;
-    min-height: 100vh;
     @include main-font;
     background-color: $mainColor;
     margin: 0px;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
-}
-
 main {
     p {
-        margin: 25px 10%;
-        line-height: 170%;
-        text-align: justify; 
-        @include bp(tablet) {
-            margin: 25px 30px;
-        }
-        @include bp(phone) {
-            margin: 25px 20px;
-            font-size: 16px;
-        }
+        text-align: justify;
+    }
+}
+
+p {
+    margin: 25px 10%;
+    line-height: 170%;
+    @include bp(tablet) {
+        margin: 25px 30px;
+    }
+    @include bp(phone) {
+        margin: 25px 20px;
+        font-size: 16px;
     }
 }

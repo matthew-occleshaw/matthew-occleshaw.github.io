@@ -3,7 +3,7 @@ $(function() {
     $("#footer").load("/html/footer.html");
 
     $(".navbar-menu-button").click(function(){
-        $("#navbar-container").slideToggle("125")
+        $("#navbar-container").slideToggle(250)
         $(this).toggleClass("active")
       });
 });

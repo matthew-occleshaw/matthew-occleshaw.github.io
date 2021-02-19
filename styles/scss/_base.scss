@@ -1,4 +1,6 @@
 // Contained within this file are all your resets, variables, mixins, and any utility classes
+
+// Fonts
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
 
 @mixin main-font {
@@ -13,6 +15,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+// Breakpoints
 @mixin bp($breakpoint) {
     $breakpoint-phone: 450px;
     $breakpoint-tablet: 550px;
@@ -29,6 +32,22 @@
     }
 }
 
-
+// Variable definitions
 $mainColor: #1c1c1c;
 $contrastingColour: white;
+
+// Resets
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}

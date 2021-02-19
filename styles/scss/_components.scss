@@ -66,8 +66,9 @@ a, a:hover, a:focus, a:active {
     }
     
     .navbar-button {
-        padding: 10px 30px;
+        width: 100%;
         text-decoration: none;
+        text-align: center;
     }
     
     .float-right {
@@ -133,12 +134,7 @@ a, a:hover, a:focus, a:active {
 // Footer
 footer {
     background-color: lighten($mainColor, 10%);
-    margin: 0px;
-    padding: 50px 100px;
-
-    p {
-        margin: 0px;
-    }
+    padding: 25px 0px;
 
     .footer-icons-container {
         display: flex;
