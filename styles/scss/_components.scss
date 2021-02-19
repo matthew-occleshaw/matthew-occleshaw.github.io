@@ -134,14 +134,24 @@ a, a:hover, a:focus, a:active {
 // Footer
 footer {
     background-color: lighten($mainColor, 10%);
-    padding: 25px 0px;
+    padding: 25px 10%;
 
     .footer-icons-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        a {
-            margin: 0 10vw;
+    }
+    .social-media-icon {
+        margin: 0 10%;
+    }
+    a {
+        text-decoration: none;
+        color: gray;
+        font-style: bold;
+        display: block;
+        text-align: center;
+        &:hover {
+            color: white;
         }
     }
 }
