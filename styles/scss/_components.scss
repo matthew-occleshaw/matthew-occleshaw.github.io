@@ -37,9 +37,14 @@
 
 .navbar-button {
     padding: 13px 25px;
+    box-sizing: border-box;
+    max-height: 100%;
     background-color: $mainColor;
     &:hover {
     background-color: lighten($mainColor, 50%);
+    }
+    &.active {
+        border-top: solid 3px;
     }
 }
 
