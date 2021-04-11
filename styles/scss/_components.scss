@@ -36,10 +36,11 @@
 }
 
 .navbar-button {
-    padding: 13px 25px;
+    padding: 10px 25px 13px 25px;
     box-sizing: border-box;
     max-height: 100%;
     background-color: $mainColor;
+    border-top: solid 3px transparent;
     &:hover {
     background-color: lighten($mainColor, 50%);
     }
@@ -74,6 +75,9 @@ a, a:hover, a:focus, a:active {
         width: 100%;
         text-decoration: none;
         text-align: center;
+        &.active {
+            border: none;
+        }
     }
     
     .float-right {
