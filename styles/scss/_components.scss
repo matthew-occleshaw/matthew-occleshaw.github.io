@@ -144,23 +144,29 @@ a, a:hover, a:focus, a:active {
 footer {
     background-color: lighten($mainColor, 10%);
     padding: 25px 10%;
-
     .footer-icons-container {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-    .social-media-icon {
-        margin: 0 10%;
+        height: 32px;
     }
     a {
-        text-decoration: none;
-        color: gray;
-        font-style: bold;
-        display: block;
-        text-align: center;
-        &:hover {
-            color: white;
+        &.social-media-icon {
+            margin: 0 10%;
+            height: inherit;
+            img {
+                filter: invert(1);
+            }
+        }
+        &.footer-link {
+            text-decoration: none;
+            color: gray;
+            font-style: bold;
+            display: block;
+            text-align: center;
+            &:hover {
+                color: white;
+            }
         }
     }
 }
