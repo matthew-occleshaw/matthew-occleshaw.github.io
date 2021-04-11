@@ -58,7 +58,7 @@ a, a:hover, a:focus, a:active {
     margin-left: auto;
 }
 
-.navbar-menu-button-container {
+.navbar-hamburger-container {
     display: none;
 }
 
@@ -88,13 +88,13 @@ a, a:hover, a:focus, a:active {
         display: none;
     }
 
-    .navbar-menu-button-bar {
+    .navbar-hamburger-bar {
         display: block;
         height: 50px;
         background-color: $mainColor;
     }
 
-    .navbar-menu-button-container {
+    .navbar-hamburger-container {
         display:flex;
         float: right;
         height: 50px;
@@ -102,7 +102,7 @@ a, a:hover, a:focus, a:active {
         margin-right: 10px;
     }
 
-    .navbar-menu-button {
+    .navbar-hamburger {
         align-self: center;
         margin: auto;
         display: block;
