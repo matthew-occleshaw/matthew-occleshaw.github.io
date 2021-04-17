@@ -40,3 +40,5 @@ function buildFile(oldFilePath, newFilePath) {
   fs.writeFileSync(newFilePath, $.html());
 
 }
+
+console.log('Page build completed')
