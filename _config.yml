@@ -1,2 +1,4 @@
 exclude:
   README.md
+  .gitignore
+  scripts/build-site.js
