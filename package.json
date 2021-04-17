@@ -1,0 +1,23 @@
+{
+  "name": "matthew-occleshaw.github.io",
+  "version": "1.0.0",
+  "description": "Personal website  \r [Website Link](https://matthew-occleshaw.github.io/)  \r [GitHub Repository for Website](https://www.github.com/matthew-occleshaw/matthew-occleshaw.github.io)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthew-occleshaw/matthew-occleshaw.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthew-occleshaw/matthew-occleshaw.github.io/issues"
+  },
+  "homepage": "https://github.com/matthew-occleshaw/matthew-occleshaw.github.io#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.6"
+  }
+}
