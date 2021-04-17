@@ -7,4 +7,5 @@ Personal website
 
 ## To build
 
-To build the site before pushing, run `scripts/build-site.js` with `node`
+To build the site before pushing, run `scripts/build-site.js` with `node`  
+You must run `npm install` to install required packages for the build
