@@ -4,3 +4,4 @@ exclude:
   scripts/build-site.js
   package.json
   package-lock.json
+  html/src
