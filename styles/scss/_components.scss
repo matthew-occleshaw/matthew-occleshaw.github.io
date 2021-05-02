@@ -170,3 +170,9 @@ footer {
         }
     }
 }
+
+// Portfolio items
+.portfolio-item {
+  display: grid;
+  grid-template-columns: 30vw 70vw;
+}
