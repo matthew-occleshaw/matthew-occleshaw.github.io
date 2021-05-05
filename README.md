@@ -7,5 +7,5 @@ Personal website
 
 ## To build
 
-To build the site before pushing, run `node scripts/build-site.js`  
+To build the site before pushing, run `node scripts/build-site.js` (run with `-w` or `--watch` flag to watch files and automatically build when there is a change)  
 You must run `npm install` to install required packages for the build beforehand

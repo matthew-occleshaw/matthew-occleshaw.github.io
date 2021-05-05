@@ -1,6 +1,10 @@
 const fs = require('fs');
 const path = require('path')
 const cheerio = require('cheerio');
+const chokidar = require('chokidar');
+
+let header;
+let footer;
 
 function getPath () {
   const websitePath = path.join(__dirname, '..')
@@ -9,46 +13,70 @@ function getPath () {
   return [websitePath, sourcePath, destPath];
 }
 
-function buildSite (websitePath, sourcePath, destPath) {
-  let header = fs.readFileSync(path.join(websitePath, '/html/src/components/header.html'));
-  let footer = fs.readFileSync(path.join(websitePath, './html/src/components/footer.html'));
+async function getComponents (websitePath) {
+  header = await fs.promises.readFile(path.join(websitePath, '/html/src/components/header.html'));
+  footer = await fs.promises.readFile(path.join(websitePath, './html/src/components/footer.html'));
+}
 
-  const files = fs.readdirSync(sourcePath);
-
-  files.forEach(function (fileName) {
-  let oldFilePath = path.join(sourcePath, fileName);
-  if (fileName == 'index.html') {
-      var newFilePath = path.join(websitePath, 'index.html');
+function getFilePaths (websitePath, sourcePath, destPath, filename) {
+  let oldFilePath = path.join(sourcePath, filename);
+  let newFilePath;
+  if (filename == 'index.html') {
+    newFilePath = path.join(websitePath, 'index.html');
   } else {
-      var newFilePath = path.join(destPath, fileName);
+    newFilePath = path.join(destPath, filename);
   }
-  buildFile(oldFilePath, newFilePath);
+  return [oldFilePath, newFilePath];
+}
+
+async function buildSite (websitePath, sourcePath, destPath) {
+
+  const files = await fs.promises.readdir(sourcePath);
+
+  files.forEach(function (filename) {
+    let [oldFilePath, newFilePath] = getFilePaths(websitePath, sourcePath, destPath, filename);
+    buildPage(oldFilePath, newFilePath);
   });
 
-  function buildFile(oldFilePath, newFilePath) {
+  console.log('Page build complete');
 
-    fs.copyFileSync(oldFilePath, newFilePath);
-    let file = fs.readFileSync(newFilePath);
-    let $ = cheerio.load(file);
-    
-    let title = $('title').text();
+}
 
-    $('header').html(header);
-    $('footer').html(footer);
-    $('#page-title').html(title);
+async function buildPage(oldFilePath, newFilePath) {
 
-    $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
+  await fs.promises.copyFile(oldFilePath, newFilePath);
+  let file = await fs.promises.readFile(newFilePath);
+  let $ = cheerio.load(file);
+  
+  let title = $('title').text();
 
-    fs.writeFileSync(newFilePath, $.html());
+  $('header').html(header);
+  $('footer').html(footer);
+  $('#page-title').html(title);
 
-  }
+  $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
 
-  console.log('Page build completed');
+  await fs.promises.writeFile(newFilePath, $.html());
+
 }
 
 function main () {
   const [websitePath, sourcePath, destPath] = getPath();
-  buildSite(websitePath, sourcePath, destPath);
+  getComponents(websitePath);
+  if (typeof process.argv[2] === 'undefined') {
+    buildSite(websitePath, sourcePath, destPath);
+  } else if (process.argv[2] == '-w' || process.argv[2] == '--watch') {
+    console.log('Files being watched. Press Ctrl+C to exit.');
+    chokidar.watch('./html/src/content').on('change', (event) => {
+      let filename = path.basename(event);
+      console.log(`File change detected (${filename})`);
+      let [oldFilePath, newFilePath] = getFilePaths(websitePath, sourcePath, destPath, filename);
+      buildPage(oldFilePath, newFilePath);
+      console.log('Page built\n');
+    });
+  } else {
+    console.log('Not a valid flag');
+  }
 }
 
 main();
