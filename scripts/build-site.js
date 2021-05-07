@@ -9,8 +9,9 @@ let footer;
 function getPath () {
   const websitePath = path.join(__dirname, '..')
   const sourcePath = path.join(websitePath, 'html', 'src', 'content');
+  const componentPath = path.join(websitePath, 'html', 'src', 'components');
   const destPath = path.join(websitePath, 'html', 'dest');
-  return [websitePath, sourcePath, destPath];
+  return [websitePath, sourcePath, componentPath, destPath];
 }
 
 async function getComponents (websitePath) {
@@ -61,22 +62,36 @@ async function buildPage(oldFilePath, newFilePath) {
 }
 
 function main () {
-  const [websitePath, sourcePath, destPath] = getPath();
+
+  const [websitePath, sourcePath, componentPath, destPath] = getPath();
   getComponents(websitePath);
+
   if (typeof process.argv[2] === 'undefined') {
     buildSite(websitePath, sourcePath, destPath);
+
   } else if (process.argv[2] == '-w' || process.argv[2] == '--watch') {
-    console.log('Files being watched. Press Ctrl+C to exit.');
-    chokidar.watch('./html/src/content').on('change', (event) => {
+
+    const contentWatch = chokidar.watch(sourcePath).on('change', (event) => {
+
       let filename = path.basename(event);
       console.log(`File change detected (${filename})`);
+
       let [oldFilePath, newFilePath] = getFilePaths(websitePath, sourcePath, destPath, filename);
       buildPage(oldFilePath, newFilePath);
       console.log('Page built\n');
+
     });
+
+    const componentWatch = chokidar.watch(componentPath).on('change', (event) => {
+      buildSite(websitePath, sourcePath, destPath);
+    });
+
+    console.log('Files being watched. Press Ctrl+C to exit.\n');
+
   } else {
     console.log('Not a valid flag');
   }
+
 }
 
 main();
