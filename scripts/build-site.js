@@ -28,9 +28,10 @@ function getFilePaths (websitePath, sourcePath, destPath, filename) {
   return [oldFilePath, newFilePath];
 }
 
-async function buildSite (websitePath, sourcePath, destPath, header, footer) {
+async function buildSite (websitePath, sourcePath, componentPath, destPath) {
 
-  const files = await fs.promises.readdir(sourcePath);
+  let files = await fs.promises.readdir(sourcePath);
+  let [header, footer] = await getComponents(componentPath);
 
   files.forEach(function (filename) {
     let [oldFilePath, newFilePath] = getFilePaths(websitePath, sourcePath, destPath, filename);
@@ -61,40 +62,41 @@ async function buildPage(oldFilePath, newFilePath, header, footer) {
 
 async function main () {
 
-  const [websitePath, sourcePath, componentPath, destPath] = await getPath();
+  let [websitePath, sourcePath, componentPath, destPath] = await getPath();
 
   if (typeof process.argv[2] === 'undefined') {
 
-    const [header, footer] = await getComponents(componentPath);
-    buildSite(websitePath, sourcePath, destPath, header, footer);
+    buildSite(websitePath, sourcePath, componentPath, destPath);
 
   } else if (process.argv[2] == '-w' || process.argv[2] == '--watch') {
-
-    const contentWatch = chokidar.watch(sourcePath).on('change', (event) => {
+    
+    let contentWatch = chokidar.watch(sourcePath).on('change', async (event) => {
 
       let filename = path.basename(event);
       console.log(`File change detected (content/${filename})`);
 
-      let [oldFilePath, newFilePath] = getFilePaths(websitePath, sourcePath, destPath, filename);
-      buildPage(oldFilePath, newFilePath);
+      let [oldFilePath, newFilePath] = await getFilePaths(websitePath, sourcePath, destPath, filename);
+      let [header, footer] = await getComponents(componentPath);
+      buildPage(oldFilePath, newFilePath, header, footer);
       console.log('Page build complete\n');
 
     });
 
-    const componentWatch = chokidar.watch(componentPath).on('change', async function (event) {
+    let componentWatch = chokidar.watch(componentPath).on('change', async (event) => {
 
       let filename = path.basename(event);
       console.log(`File change detected (components/${filename})`);
 
-      const [header, footer] = await getComponents(componentPath);
-      buildSite(websitePath, sourcePath, destPath, header, footer);
+      buildSite(websitePath, sourcePath, componentPath, destPath);
 
     });
 
     console.log('Files being watched. Press Ctrl+C to exit.\n');
 
   } else {
+
     console.log('Not a valid flag');
+
   }
 
 }
