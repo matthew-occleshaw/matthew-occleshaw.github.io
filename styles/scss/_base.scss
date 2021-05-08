@@ -1,35 +1,34 @@
 // Contained within this file are all your resets, variables, mixins, and any utility classes
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap");
 
 @mixin main-font {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: white;
 }
 
 @mixin header-font {
-    color: white;
-    font-size: 125px;
-    font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-size: 125px;
+  font-family: "Montserrat", sans-serif;
 }
 
 // Breakpoints
 @mixin bp($breakpoint) {
-    $breakpoint-phone: 450px;
-    $breakpoint-tablet: 550px;
+  $breakpoint-phone: 450px;
+  $breakpoint-tablet: 550px;
 
-    @if $breakpoint == phone {
-      @media only screen and (max-width: $breakpoint-phone) {
-          @content;
-      }
+  @if $breakpoint == phone {
+    @media only screen and (max-width: $breakpoint-phone) {
+      @content;
     }
-    @else if $breakpoint == tablet {
-        @media only screen and (max-width: $breakpoint-tablet) {
-            @content;
-        }
+  } @else if $breakpoint == tablet {
+    @media only screen and (max-width: $breakpoint-tablet) {
+      @content;
     }
+  }
 }
 
 // Variable definitions
@@ -38,16 +37,18 @@ $contrastingColour: white;
 
 // Resets
 html {
-    font-size: 100%;
-    box-sizing: border-box;
+  font-size: 100%;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
-    min-height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  min-height: 100vh;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
