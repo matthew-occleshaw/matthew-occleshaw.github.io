@@ -20,6 +20,6 @@
   "homepage": "https://github.com/matthew-occleshaw/matthew-occleshaw.github.io#readme",
   "devDependencies": {
     "cheerio": "^1.0.0-rc.6",
-    "chokidar": "^3.5.1"
+    "gulp": "^4.0.2"
   }
 }
