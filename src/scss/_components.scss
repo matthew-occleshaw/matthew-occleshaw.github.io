@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   height: 400px;
-  background-image: url(/images/header-background.jpg);
+  background-image: url(/dist/header-background.webp);
   background-size: cover;
   @include bp(tablet) {
     height: 300px;
@@ -116,7 +116,7 @@ a:active {
     div {
       background-color: white;
       border-radius: 3px;
-      content: "";
+      content: '';
       display: block;
       height: 5px;
       margin: 7px 0;
