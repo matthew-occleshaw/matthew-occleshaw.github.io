@@ -23,10 +23,10 @@
     "cssnano": "^5.0.2",
     "gulp": "^4.0.2",
     "gulp-cheerio": "^1.0.0",
-    "gulp-flatten": "^0.4.0",
     "gulp-postcss": "^9.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-terser": "^2.0.1",
-    "gulp-webp": "^4.0.1"
+    "gulp-webp": "^4.0.1",
+    "merge-stream": "^2.0.0"
   }
 }

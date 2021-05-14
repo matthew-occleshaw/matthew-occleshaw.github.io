@@ -7,7 +7,7 @@ const autoprefixer = require('autoprefixer');
 const terser = require('gulp-terser');
 const cheerio = require('gulp-cheerio');
 const webp = require('gulp-webp');
-const flatten = require('gulp-flatten');
+const mergeStream = require('merge-stream');
 const browsersync = require('browser-sync').create();
 
 // Path Object
@@ -15,7 +15,11 @@ const path = {
   scss: 'src/scss/*.scss',
   html: {
     all: 'src/html/**/*.html',
-    content: 'src/html/content/*',
+    content: {
+      all: 'src/html/content/*',
+      index: 'src/html/content/index.html',
+      other: ['src/html/content/*', '!src/html/content/index.html'],
+    },
     component: {
       all: 'src/html/components/*',
       header: 'src/html/components/header.html',
@@ -50,18 +54,30 @@ function htmlTask() {
   let header = readFileSync(path.html.component.header, 'utf8');
   let footer = readFileSync(path.html.component.footer, 'utf8');
 
-  return src(path.html.content)
-    .pipe(flatten())
-    .pipe(
-      cheerio(($, file) => {
-        $('header').html(header);
-        $('footer').html(footer);
-        let title = $('title').text();
-        $('#page-title').html(title);
-        $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
-      })
-    )
-    .pipe(dest('dist'));
+  return mergeStream(
+    src(path.html.content.index, { nodir: true })
+      .pipe(
+        cheerio(($, file) => {
+          $('header').html(header);
+          $('footer').html(footer);
+          let title = $('title').text();
+          $('#page-title').html(title);
+          $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
+        })
+      )
+      .pipe(dest('.')),
+    src(path.html.content.other, { nodir: true })
+      .pipe(
+        cheerio(($, file) => {
+          $('header').html(header);
+          $('footer').html(footer);
+          let title = $('title').text();
+          $('#page-title').html(title);
+          $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
+        })
+      )
+      .pipe(dest('dist'))
+  );
 }
 
 // Image Tasks
@@ -81,7 +97,7 @@ function copyImageTask() {
 function browsersyncServe(cb) {
   browsersync.init({
     server: {
-      baseDir: 'dist',
+      baseDir: '.',
     },
     open: false,
   });
