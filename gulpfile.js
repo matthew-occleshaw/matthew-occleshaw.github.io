@@ -22,8 +22,10 @@ const path = {
     },
     component: {
       all: 'src/html/components/*',
+      head: 'src/html/components/head.html',
       header: 'src/html/components/header.html',
       footer: 'src/html/components/footer.html',
+      scripts: 'src/html/components/scripts.html',
     },
   },
   js: 'src/js/*.js',
@@ -51,33 +53,34 @@ function jsTask() {
 
 // HTML Task
 function htmlTask() {
+  let head = readFileSync(path.html.component.head, 'utf8');
   let header = readFileSync(path.html.component.header, 'utf8');
   let footer = readFileSync(path.html.component.footer, 'utf8');
+  let scripts = readFileSync(path.html.component.scripts, 'utf8');
 
   return mergeStream(
     src(path.html.content.index, { nodir: true })
-      .pipe(
-        cheerio(($, file) => {
-          $('header').html(header);
-          $('footer').html(footer);
-          let title = $('title').text();
-          $('#page-title').html(title);
-          $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
-        })
-      )
+      .pipe(injectHtml(head, header, footer, scripts))
       .pipe(dest('.')),
     src(path.html.content.other, { nodir: true })
-      .pipe(
-        cheerio(($, file) => {
-          $('header').html(header);
-          $('footer').html(footer);
-          let title = $('title').text();
-          $('#page-title').html(title);
-          $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
-        })
-      )
+      .pipe(injectHtml(head, header, footer, scripts))
       .pipe(dest('dist'))
   );
+}
+
+function injectHtml(head, header, footer, scripts) {
+  return cheerio(($, file) => {
+    let title = $('head').data('title');
+    let description = $('head').data('description');
+    $('head').html(head);
+    $('title').html(title);
+    $('meta[name="description"]').attr('content', description);
+    $('header').html(header);
+    $('footer').html(footer);
+    $('body').append(scripts);
+    $('#page-title').html(title);
+    $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
+  });
 }
 
 // Image Tasks
@@ -117,12 +120,11 @@ function watchTask() {
   watch(path.image.all, series(imageTask, browsersyncReload));
 }
 
-// Default Gulp Task
+// Gulp Tasks
 exports.default = series(
-  htmlTask,
-  scssTask,
-  jsTask,
-  imageTask,
+  parallel(htmlTask, scssTask, jsTask, imageTask),
   browsersyncServe,
   watchTask
 );
+exports.watch = series(browsersyncServe, watchTask);
+exports.build = parallel(htmlTask, scssTask, jsTask, imageTask);
