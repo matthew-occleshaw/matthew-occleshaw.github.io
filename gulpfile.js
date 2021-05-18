@@ -72,11 +72,11 @@ function injectHtml(head, header, footer, scripts) {
   return cheerio(($, file) => {
     let title = $('head').data('title');
     let description = $('head').data('description');
-    $('head').html(head);
-    $('title').html(title);
+    $('head').html('\n' + head);
+    $('title').html('\n' + title);
     $('meta[name="description"]').attr('content', description);
-    $('header').html(header);
-    $('footer').html(footer);
+    $('header').html('\n' + header);
+    $('footer').html('\n' + footer);
     $('body').append(scripts);
     $('#page-title').html(title);
     $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
