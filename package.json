@@ -27,6 +27,13 @@
     "gulp-sass": "^4.1.0",
     "gulp-terser": "^2.0.1",
     "gulp-webp": "^4.0.1",
-    "merge-stream": "^2.0.0"
+    "merge-stream": "^2.0.0",
+    "prettier": "2.3.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "always",
+    "semi": true,
+    "trailingComma": "es5"
   }
 }
