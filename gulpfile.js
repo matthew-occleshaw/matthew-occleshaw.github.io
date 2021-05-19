@@ -62,7 +62,20 @@ function htmlTask() {
   let scripts = readFileSync(path.html.component.scripts, 'utf8');
 
   return src(path.html.content.all, { nodir: true })
-    .pipe(injectHtml(head, header, footer, scripts))
+    .pipe(
+      cheerio(($, file) => {
+        let title = $('head').data('title');
+        let description = $('head').data('description');
+        $('head').html(head);
+        $('title').html(title);
+        $('meta[name="description"]').attr('content', description);
+        $('header').html(header);
+        $('footer').html(footer);
+        $('body').append(scripts);
+        $('#page-title').html(title);
+        $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
+      })
+    )
     .pipe(prettier(prettierOptions))
     .pipe(
       rename((path) => {
@@ -72,21 +85,6 @@ function htmlTask() {
       })
     )
     .pipe(dest('dist'));
-}
-
-function injectHtml(head, header, footer, scripts) {
-  return cheerio(($, file) => {
-    let title = $('head').data('title');
-    let description = $('head').data('description');
-    $('head').html(head);
-    $('title').html(title);
-    $('meta[name="description"]').attr('content', description);
-    $('header').html(header);
-    $('footer').html(footer);
-    $('body').append(scripts);
-    $('#page-title').html(title);
-    $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
-  });
 }
 
 const prettierOptions = {
