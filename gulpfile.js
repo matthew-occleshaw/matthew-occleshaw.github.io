@@ -7,8 +7,10 @@ const autoprefixer = require('autoprefixer');
 const terser = require('gulp-terser');
 const cheerio = require('gulp-cheerio');
 const webp = require('gulp-webp');
-const mergeStream = require('merge-stream');
 const browsersync = require('browser-sync').create();
+const prettier = require('gulp-prettier');
+const concat = require('gulp-concat');
+const rename = require('gulp-rename');
 
 // Path Object
 const path = {
@@ -16,12 +18,12 @@ const path = {
   html: {
     all: 'src/html/**/*.html',
     content: {
-      all: 'src/html/content/*',
+      all: 'src/html/content/*.html',
       index: 'src/html/content/index.html',
-      other: ['src/html/content/*', '!src/html/content/index.html'],
+      other: ['src/html/content/*.html', '!src/html/content/index.html'],
     },
     component: {
-      all: 'src/html/components/*',
+      all: 'src/html/components/*.html',
       head: 'src/html/components/head.html',
       header: 'src/html/components/header.html',
       footer: 'src/html/components/footer.html',
@@ -48,6 +50,7 @@ function scssTask() {
 function jsTask() {
   return src(path.js, { sourcemaps: true })
     .pipe(terser())
+    .pipe(concat('main.js', { newLine: '' }))
     .pipe(dest('dist', { sourcemaps: '.' }));
 }
 
@@ -58,30 +61,40 @@ function htmlTask() {
   let footer = readFileSync(path.html.component.footer, 'utf8');
   let scripts = readFileSync(path.html.component.scripts, 'utf8');
 
-  return mergeStream(
-    src(path.html.content.index, { nodir: true })
-      .pipe(injectHtml(head, header, footer, scripts))
-      .pipe(dest('.')),
-    src(path.html.content.other, { nodir: true })
-      .pipe(injectHtml(head, header, footer, scripts))
-      .pipe(dest('dist'))
-  );
+  return src(path.html.content.all, { nodir: true })
+    .pipe(injectHtml(head, header, footer, scripts))
+    .pipe(prettier(prettierOptions))
+    .pipe(
+      rename((path) => {
+        if (path.basename == 'index') {
+          path.dirname = '..';
+        }
+      })
+    )
+    .pipe(dest('dist'));
 }
 
 function injectHtml(head, header, footer, scripts) {
   return cheerio(($, file) => {
     let title = $('head').data('title');
     let description = $('head').data('description');
-    $('head').html('\n' + head);
-    $('title').html('\n' + title);
+    $('head').html(head);
+    $('title').html(title);
     $('meta[name="description"]').attr('content', description);
-    $('header').html('\n' + header);
-    $('footer').html('\n' + footer);
+    $('header').html(header);
+    $('footer').html(footer);
     $('body').append(scripts);
     $('#page-title').html(title);
     $(`#${title.toLowerCase()}-navbar-button`).addClass('active');
   });
 }
+
+const prettierOptions = {
+  singleQuote: true,
+  arrowParens: 'always',
+  semi: true,
+  trailingComma: 'es5',
+};
 
 // Image Tasks
 const imageTask = parallel(webpTask, copyImageTask);
@@ -120,11 +133,10 @@ function watchTask() {
   watch(path.image.all, series(imageTask, browsersyncReload));
 }
 
+// Build Task
+const buildTask = parallel(htmlTask, scssTask, jsTask, imageTask);
+
 // Gulp Tasks
-exports.default = series(
-  parallel(htmlTask, scssTask, jsTask, imageTask),
-  browsersyncServe,
-  watchTask
-);
+exports.default = series(buildTask, browsersyncServe, watchTask);
 exports.watch = series(browsersyncServe, watchTask);
-exports.build = parallel(htmlTask, scssTask, jsTask, imageTask);
+exports.build = buildTask;
