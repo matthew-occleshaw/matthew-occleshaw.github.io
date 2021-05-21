@@ -143,6 +143,16 @@ a:active {
   color: $mainColor;
   padding: 25px 10%;
   margin: auto 0px;
+  @include bp(tablet) {
+    padding: 25px 30px;
+  }
+  @include bp(phone) {
+    padding: 25px 20px;
+    font-size: 16px;
+  }
+  p {
+    margin: auto;
+  }
 }
 
 // Footer
