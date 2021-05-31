@@ -64,11 +64,15 @@ function htmlTask() {
   return src(path.html.content.all, { nodir: true })
     .pipe(
       cheerio(($, file) => {
-        let title = $('head').data('title');
-        let description = $('head').data('description');
+        let head_attrs = $('head').attr();
+        let title = head_attrs['data-title'];
+        let description = head_attrs['data-description'];
+        head_attrs['data-title'] = null;
+        head_attrs['data-description'] = null;
         $('head').html(head);
         $('title').html(title);
         $('meta[name="description"]').attr('content', description);
+        $('head').attr(head_attrs);
         $('header').html(header);
         $('footer').html(footer);
         $('body').append(scripts);
