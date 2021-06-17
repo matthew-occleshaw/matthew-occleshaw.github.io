@@ -118,6 +118,9 @@ function browsersyncServe(cb) {
   browsersync.init({
     server: {
       baseDir: '.',
+      serveStaticOptions: {
+        extensions: ['html'],
+      },
     },
     open: false,
   });
@@ -143,4 +146,5 @@ const buildTask = parallel(htmlTask, scssTask, jsTask, imageTask);
 // Gulp Tasks
 exports.default = series(buildTask, browsersyncServe, watchTask);
 exports.watch = series(browsersyncServe, watchTask);
+exports.server = browsersyncServe;
 exports.build = buildTask;
