@@ -2,8 +2,8 @@
 
 Personal website
 
-[Website Link](https://matthew-occleshaw.github.io/)  
-[GitHub Repository for Website](https://www.github.com/matthew-occleshaw/matthew-occleshaw.github.io)
+[Website Link](https://mjocc.github.io/)  
+[GitHub Repository for Website](https://www.github.com/mjocc/mjocc.github.io)
 
 ## To build
 
