@@ -1,5 +1,6 @@
 const { readFileSync } = require('fs');
-const { src, dest, task, watch, series, parallel } = require('gulp');
+const { src, dest, watch, series, parallel } = require('gulp');
+const del = require('del');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const cssnano = require('cssnano');
@@ -9,34 +10,44 @@ const cheerio = require('gulp-cheerio');
 const webp = require('gulp-webp');
 const browsersync = require('browser-sync').create();
 const prettier = require('gulp-prettier');
-const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 
 // Path Object
 const path = {
+  distFiles: ['dist/*', 'index.html'],
   scss: 'src/scss/*.scss',
   html: {
-    all: 'src/html/**/*.html',
+    all: 'src/**/*.html',
     content: {
-      all: 'src/html/content/*.html',
-      index: 'src/html/content/index.html',
-      other: ['src/html/content/*.html', '!src/html/content/index.html'],
+      all: ['src/**/*.html', '!src/components/*.html'],
+      allFolders: ['src/*', '!src/{components,images,js,scss}'],
+      index: 'src/index/index.html',
+      other: [
+        'src/**/*.html',
+        '!src/index/index.html',
+        '!src/components/*.html',
+      ],
     },
     component: {
-      all: 'src/html/components/*.html',
-      head: 'src/html/components/head.html',
-      header: 'src/html/components/header.html',
-      footer: 'src/html/components/footer.html',
-      scripts: 'src/html/components/scripts.html',
+      all: 'src/components/*.html',
+      head: 'src/components/head.html',
+      header: 'src/components/header.html',
+      footer: 'src/components/footer.html',
+      scripts: 'src/components/scripts.html',
     },
   },
-  js: 'src/js/*.js',
+  js: ['src/js/*.js', 'src/**/*.js'],
   image: {
-    all: 'src/images/*',
-    toWebp: 'src/images/*.{png,jpg}',
-    copy: ['src/images/*', '!src/images/*.{png,jpg}'],
+    toWebp: ['src/images/*.{png,jpg}', 'src/**/*.{png,jpg}'],
+    copy: ['src/images/*.{svg,gif}', 'src/**/*.{svg,gif}'],
   },
 };
+
+// Clean Task
+async function cleanTask(cb) {
+  //await del(path.distFiles);
+  cb();
+}
 
 // Sass Task
 function scssTask() {
@@ -50,7 +61,6 @@ function scssTask() {
 function jsTask() {
   return src(path.js, { sourcemaps: true })
     .pipe(terser())
-    .pipe(concat('main.js', { newLine: '' }))
     .pipe(dest('dist', { sourcemaps: '.' }));
 }
 
@@ -61,7 +71,7 @@ function htmlTask() {
   let footer = readFileSync(path.html.component.footer, 'utf8');
   let scripts = readFileSync(path.html.component.scripts, 'utf8');
 
-  return src(path.html.content.all, { nodir: true })
+  return src(path.html.content.all)
     .pipe(
       cheerio(($, file) => {
         if (typeof $('html').data('ignore') === 'undefined') {
@@ -85,12 +95,14 @@ function htmlTask() {
     .pipe(prettier(prettierOptions))
     .pipe(
       rename((path) => {
-        if (path.basename == 'index') {
-          path.dirname = '..';
+        if (path.dirname == 'index') {
+          path.dirname = '.';
+        } else {
+          path.basename = 'index';
         }
       })
     )
-    .pipe(dest('dist'));
+    .pipe(dest('.'));
 }
 
 const prettierOptions = {
@@ -106,11 +118,11 @@ const imageTask = parallel(webpTask, copyImageTask);
 function webpTask() {
   return src(path.image.toWebp)
     .pipe(webp({ quality: 100 }))
-    .pipe(dest('dist'));
+    .pipe(dest('dist/img'));
 }
 
 function copyImageTask() {
-  return src(path.image.copy).pipe(dest('dist'));
+  return src(path.image.copy).pipe(dest('dist/img'));
 }
 
 // Browsersync Tasks
@@ -141,7 +153,10 @@ function watchTask() {
 }
 
 // Build Task
-const buildTask = parallel(htmlTask, scssTask, jsTask, imageTask);
+const buildTask = series(
+  cleanTask,
+  parallel(htmlTask, scssTask, jsTask, imageTask)
+);
 
 // Gulp Tasks
 exports.default = series(buildTask, browsersyncServe, watchTask);
