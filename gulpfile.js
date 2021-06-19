@@ -14,7 +14,10 @@ const rename = require('gulp-rename');
 
 // Path Object
 const path = {
-  distFiles: ['dist/*', 'index.html'],
+  output: {
+    dirs: ['./*', '!{dist,node_modules,src}'],
+    files: ['dist/**', 'index.html'],
+  },
   scss: 'src/scss/*.scss',
   html: {
     all: 'src/**/*.html',
@@ -44,9 +47,11 @@ const path = {
 };
 
 // Clean Task
-async function cleanTask(cb) {
-  //await del(path.distFiles);
-  cb();
+async function cleanTask() {
+  return Promise.all([
+    del(path.output.dirs, { dryRun: false, onlyDirectories: true }),
+    del(path.output.files, { dryRun: false }),
+  ]);
 }
 
 // Sass Task
@@ -163,3 +168,4 @@ exports.default = series(buildTask, browsersyncServe, watchTask);
 exports.watch = series(browsersyncServe, watchTask);
 exports.server = browsersyncServe;
 exports.build = buildTask;
+exports.clean = cleanTask;
