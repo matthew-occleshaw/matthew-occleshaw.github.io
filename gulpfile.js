@@ -41,6 +41,7 @@ const path = {
   },
   js: ['src/js/*.js', 'src/**/*.js'],
   image: {
+    all: ['src/img/*', 'src/**/*.{png,jpg,svg,gif}'],
     toWebp: ['src/images/*.{png,jpg}', 'src/**/*.{png,jpg}'],
     copy: ['src/images/*.{svg,gif}', 'src/**/*.{svg,gif}'],
   },
@@ -140,6 +141,7 @@ function browsersyncServe(cb) {
       },
     },
     open: false,
+    notify: false,
   });
   cb();
 }
