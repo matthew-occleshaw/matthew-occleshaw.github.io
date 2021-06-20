@@ -20,13 +20,12 @@ const path = {
   },
   scss: 'src/scss/*.scss',
   html: {
-    all: 'src/**/*.html',
+    all: 'src/pages/**/*.html',
     content: {
-      all: ['src/**/*.html', '!src/components/*.html'],
-      allFolders: ['src/*', '!src/{components,images,js,scss}'],
-      index: 'src/index/index.html',
+      all: ['src/pages/**/*.html', '!src/components/*.html'],
+      index: 'src/pages/index/index.html',
       other: [
-        'src/**/*.html',
+        'src/pages/**/*.html',
         '!src/index/index.html',
         '!src/components/*.html',
       ],
@@ -39,11 +38,11 @@ const path = {
       scripts: 'src/components/scripts.html',
     },
   },
-  js: ['src/js/*.js', 'src/**/*.js'],
+  js: ['src/js/*.js', 'src/pages/*.js'],
   image: {
-    all: ['src/img/*', 'src/**/*.{png,jpg,svg,gif}'],
-    toWebp: ['src/images/*.{png,jpg}', 'src/**/*.{png,jpg}'],
-    copy: ['src/images/*.{svg,gif}', 'src/**/*.{svg,gif}'],
+    all: ['src/img/*', 'src/pages/**/*.{png,jpg,svg,gif}'],
+    toWebp: ['src/img/*.{png,jpg}', 'src/pages/**/*.{png,jpg}'],
+    copy: ['src/img/*.{svg,gif}', 'src/pages/**/*.{svg,gif}'],
   },
 };
 
@@ -124,6 +123,13 @@ const imageTask = parallel(webpTask, copyImageTask);
 function webpTask() {
   return src(path.image.toWebp)
     .pipe(webp({ quality: 100 }))
+    .pipe(
+      rename((path) => {
+        if (path.dirname != '.') {
+          path.dirname = '../../' + path.dirname;
+        }
+      })
+    )
     .pipe(dest('dist/img'));
 }
 
