@@ -30,6 +30,7 @@
     "gulp-sass": "^4.1.0",
     "gulp-terser": "^2.0.1",
     "gulp-webp": "^4.0.1",
+    "postcss": "^8.3.5",
     "prettier": "2.3.0"
   },
   "prettier": {
